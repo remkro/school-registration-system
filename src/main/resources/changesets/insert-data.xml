@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="remek" id="1">
+        <insert tableName="students">
+            <column name="id_student" valueNumeric="1"/>
+            <column name="first_name" value="Arnold"/>
+            <column name="last_name" value="Boczek"/>
+            <column name="email" value="boczek@email.com"/>
+            <column name="pesel" value="25070289243"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="students">
+            <column name="id_student" valueNumeric="2"/>
+            <column name="first_name" value="Marian"/>
+            <column name="last_name" value="Pazdzioch"/>
+            <column name="email" value="pazdzierzyca@email.com"/>
+            <column name="pesel" value="59062918259"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="students">
+            <column name="id_student" valueNumeric="3"/>
+            <column name="first_name" value="Ferdynand"/>
+            <column name="last_name" value="Kiepski"/>
+            <column name="email" value="ferdq@email.com"/>
+            <column name="pesel" value="39040710150"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="remek" id="2">
+        <insert tableName="courses">
+            <column name="id_course" valueNumeric="1"/>
+            <column name="name" value="kurs programowania"/>
+            <column name="age_limit" valueNumeric="15"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="courses">
+            <column name="id_course" valueNumeric="2"/>
+            <column name="name" value="kurs jezyka angielskiego"/>
+            <column name="age_limit" valueNumeric="10"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="courses">
+            <column name="id_course" valueNumeric="3"/>
+            <column name="name" value="kurs tanca"/>
+            <column name="age_limit" valueNumeric="18"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="courses">
+            <column name="id_course" valueNumeric="4"/>
+            <column name="name" value="kurs grania w szachy dla seniorow"/>
+            <column name="age_limit" valueNumeric="60"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

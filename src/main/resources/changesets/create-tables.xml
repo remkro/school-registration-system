@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="remek" id="1">
+        <createTable tableName="students">
+            <column name="id_student" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pesel" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="students"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="remek" id="2">
+        <createTable tableName="courses">
+            <column name="id_course" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age_limit" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="courses"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="remek" id="3">
+        <createTable tableName="students_courses">
+            <column name="student_id" type="BIGINT">
+                <constraints foreignKeyName="id_student" referencedTableName="students" referencedColumnNames="id_student"/>
+            </column>
+            <column name="course_id" type="BIGINT">
+                <constraints foreignKeyName="id_course" referencedTableName="courses" referencedColumnNames="id_course"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="students_courses"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
