@@ -93,6 +93,7 @@ public class CourseManagementService {
     }
 
     private Specification<Course> getSpecification(Long studentId) {
+        // test
         return (root, query, criteriaBuilder) -> {
             if (studentId != null) {
                 query.distinct(true);
