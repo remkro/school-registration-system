@@ -22,6 +22,7 @@ import pl.kurs.schoolregistrationsystem.model.dto.StudentWithCoursesDto;
 import pl.kurs.schoolregistrationsystem.model.entity.Student;
 import pl.kurs.schoolregistrationsystem.service.StudentManagementService;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,12 @@ public class StudentController {
 
     private final StudentManagementService studentManagementService;
     private final ModelMapper mapper;
+
+    @PostConstruct
+    public void init() {
+        studentManagementService.add(new Student("Andrzej", "Kolikowski", "70032534125", "andrew@gmail.com"));
+        studentManagementService.add(new Student("Ferdynand", "Kiepski", "11263067369", "ferdq@gmail.com"));
+    }
 
     @PostMapping
     public ResponseEntity<StudentDto> add(@RequestBody @Valid AddStudentCommand addStudentCommand) {

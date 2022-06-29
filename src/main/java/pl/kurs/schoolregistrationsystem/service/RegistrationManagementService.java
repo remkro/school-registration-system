@@ -26,16 +26,24 @@ public class RegistrationManagementService {
 
     @Transactional
     public Student addStudentToCourse(EnrollStudentToCourseCommand enrollStudentToCourseCommand) {
-        Student student = studentRepository.findByIdFetchCourses(enrollStudentToCourseCommand.getStudentId()).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND"));
-        Course course = courseRepository.findByIdFetchStudents(enrollStudentToCourseCommand.getCourseId()).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND"));
+        Student student = studentRepository.findByIdFetchCourses(
+                enrollStudentToCourseCommand.getStudentId()).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND")
+        );
+        Course course = courseRepository.findByIdFetchStudents(
+                enrollStudentToCourseCommand.getCourseId()).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND")
+        );
         student.addCourse(course);
         return studentRepository.saveAndFlush(student);
     }
 
     @Transactional
     public Student removeStudentFromCourse(long studentId, long courseId) {
-        Student student = studentRepository.findByIdFetchCourses(studentId).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND"));
-        Course course = courseRepository.findByIdFetchStudents(courseId).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND"));
+        Student student = studentRepository.findByIdFetchCourses(
+                studentId).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND")
+        );
+        Course course = courseRepository.findByIdFetchStudents(
+                courseId).orElseThrow(() -> new NoEntityException("NO_ENTITY_FOUND")
+        );
         student.removeCourse(course);
         return studentRepository.saveAndFlush(student);
     }

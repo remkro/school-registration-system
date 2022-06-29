@@ -4,7 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.kurs.schoolregistrationsystem.model.interfaces.Identificationable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Version;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -30,7 +39,9 @@ public class Student implements Identificationable, Serializable {
     private String email;
 
     @ManyToMany
-    @JoinTable(name = "students_courses", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+    @JoinTable(name = "students_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> courses = new HashSet<>();
 
     @Version
@@ -58,6 +69,10 @@ public class Student implements Identificationable, Serializable {
 
     public boolean attendsCourse(Long id) {
         return courses.stream().anyMatch(s -> s.getId().equals(id));
+    }
+
+    public boolean hasCourses() {
+        return courses.size() > 0;
     }
 
     @Override

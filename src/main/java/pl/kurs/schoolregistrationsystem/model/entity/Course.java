@@ -2,6 +2,7 @@ package pl.kurs.schoolregistrationsystem.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import pl.kurs.schoolregistrationsystem.model.interfaces.Identificationable;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "courses")
@@ -21,6 +23,11 @@ public class Course implements Identificationable, Serializable {
     @Column(name = "id_course")
     private Long id;
 
+//    @Id
+//    @GeneratedValue(generator = "system-uuid")
+//    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+//    private String id;
+
     private String name;
 
     private Integer ageLimit;
@@ -29,9 +36,10 @@ public class Course implements Identificationable, Serializable {
     private Set<Student> students = new HashSet<>();
 
     @Version
-    private Integer version;
+    private int version;
 
     public Course() {
+//        String s = UUID.randomUUID().toString();
     }
 
     public Course(String name, Integer ageLimit) {
@@ -41,6 +49,10 @@ public class Course implements Identificationable, Serializable {
 
     public boolean hasStudent(Long id) {
         return students.stream().anyMatch(s -> s.getId().equals(id));
+    }
+
+    public boolean hasStudents() {
+        return students.size() > 0;
     }
 
     @Override
